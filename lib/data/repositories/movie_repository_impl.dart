@@ -1,14 +1,14 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
+import 'package:ditonton/common/exception.dart';
+import 'package:ditonton/common/failure.dart';
 import 'package:ditonton/data/datasources/movie_local_data_source.dart';
 import 'package:ditonton/data/datasources/movie_remote_data_source.dart';
 import 'package:ditonton/data/models/movie_table.dart';
 import 'package:ditonton/domain/entities/movie.dart';
 import 'package:ditonton/domain/entities/movie_detail.dart';
 import 'package:ditonton/domain/repositories/movie_repository.dart';
-import 'package:ditonton/common/exception.dart';
-import 'package:ditonton/common/failure.dart';
 
 class MovieRepositoryImpl implements MovieRepository {
   final MovieRemoteDataSource remoteDataSource;
@@ -28,6 +28,8 @@ class MovieRepositoryImpl implements MovieRepository {
       return Left(ServerFailure(''));
     } on SocketException {
       return Left(ConnectionFailure('Failed to connect to the network'));
+    } catch (e) {
+      return Left(ConnectionFailure('Failed to connect to the network'));
     }
   }
 
@@ -39,6 +41,8 @@ class MovieRepositoryImpl implements MovieRepository {
     } on ServerException {
       return Left(ServerFailure(''));
     } on SocketException {
+      return Left(ConnectionFailure('Failed to connect to the network'));
+    } catch (e) {
       return Left(ConnectionFailure('Failed to connect to the network'));
     }
   }
@@ -52,6 +56,8 @@ class MovieRepositoryImpl implements MovieRepository {
       return Left(ServerFailure(''));
     } on SocketException {
       return Left(ConnectionFailure('Failed to connect to the network'));
+    } catch (e) {
+      return Left(ConnectionFailure('Failed to connect to the network'));
     }
   }
 
@@ -63,6 +69,8 @@ class MovieRepositoryImpl implements MovieRepository {
     } on ServerException {
       return Left(ServerFailure(''));
     } on SocketException {
+      return Left(ConnectionFailure('Failed to connect to the network'));
+    } catch (e) {
       return Left(ConnectionFailure('Failed to connect to the network'));
     }
   }
@@ -76,6 +84,8 @@ class MovieRepositoryImpl implements MovieRepository {
       return Left(ServerFailure(''));
     } on SocketException {
       return Left(ConnectionFailure('Failed to connect to the network'));
+    } catch (e) {
+      return Left(ConnectionFailure('Failed to connect to the network'));
     }
   }
 
@@ -87,6 +97,8 @@ class MovieRepositoryImpl implements MovieRepository {
     } on ServerException {
       return Left(ServerFailure(''));
     } on SocketException {
+      return Left(ConnectionFailure('Failed to connect to the network'));
+    } catch (e) {
       return Left(ConnectionFailure('Failed to connect to the network'));
     }
   }

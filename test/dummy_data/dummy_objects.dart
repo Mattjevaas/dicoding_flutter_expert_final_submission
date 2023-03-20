@@ -42,6 +42,7 @@ final testWatchlistMovie = Movie.watchlist(
   title: 'title',
   posterPath: 'posterPath',
   overview: 'overview',
+  redirect: 'movie',
 );
 
 final testMovieTable = MovieTable(
@@ -49,6 +50,7 @@ final testMovieTable = MovieTable(
   title: 'title',
   posterPath: 'posterPath',
   overview: 'overview',
+  redirect: "movie",
 );
 
 final testMovieMap = {
@@ -56,4 +58,5 @@ final testMovieMap = {
   'overview': 'overview',
   'posterPath': 'posterPath',
   'title': 'title',
+  'redirect': 'movie',
 };

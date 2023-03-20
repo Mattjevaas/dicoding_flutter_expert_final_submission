@@ -1,0 +1,27 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "poster_path": "/tfdiVvJkYMbUOXDWibPjzu5dY6S.jpg",
+      "popularity": 1.722162,
+      "id": 604,
+      "backdrop_path": "/hHwEptckXUwZM7XO2lxZ8w8upuU.jpg",
+      "vote_average": 8.17,
+      "overview": "Teen Titans is an American animated television series based on the DC Comics characters",
+      "first_air_date": "2003-07-19",
+      "origin_country": [
+        "US"
+      ],
+      "genre_ids": [
+        16,
+        10759
+      ],
+      "original_language": "en",
+      "vote_count": 12,
+      "name": "Teen Titans",
+      "original_name": "Teen Titans"
+    }
+  ],
+  "total_results": 747,
+  "total_pages": 38
+}

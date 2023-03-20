@@ -2,8 +2,11 @@ import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/common/utils.dart';
 import 'package:ditonton/presentation/provider/watchlist_movie_notifier.dart';
 import 'package:ditonton/presentation/widgets/movie_card_list.dart';
+import 'package:ditonton/presentation/widgets/tv_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../../domain/entities/tv.dart';
 
 class WatchlistMoviesPage extends StatefulWidget {
   static const ROUTE_NAME = '/watchlist-movie';
@@ -51,6 +54,18 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
               return ListView.builder(
                 itemBuilder: (context, index) {
                   final movie = data.watchlistMovies[index];
+
+                  if (movie.redirect != null) {
+                    if (movie.redirect == "movie") return MovieCard(movie);
+                    if (movie.redirect == "tv")
+                      return TvCard(
+                        Tv.watchlist(
+                            id: movie.id,
+                            overview: movie.overview!,
+                            posterPath: movie.posterPath,
+                            name: movie.title!),
+                      );
+                  }
                   return MovieCard(movie);
                 },
                 itemCount: data.watchlistMovies.length,
