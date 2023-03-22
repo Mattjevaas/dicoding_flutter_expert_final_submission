@@ -2,6 +2,8 @@ import 'package:ditonton/data/models/movie_table.dart';
 import 'package:ditonton/domain/entities/genre.dart';
 import 'package:ditonton/domain/entities/movie.dart';
 import 'package:ditonton/domain/entities/movie_detail.dart';
+import 'package:ditonton/domain/entities/season.dart';
+import 'package:ditonton/domain/entities/tv_detail.dart';
 
 final testMovie = Movie(
   adult: false,
@@ -36,6 +38,31 @@ final testMovieDetail = MovieDetail(
   voteAverage: 1,
   voteCount: 1,
 );
+
+final testTvDetail = TvDetail(
+    backdropPath: 'backdropPath',
+    genres: [Genre(id: 1, name: 'Action')],
+    id: 1,
+    overview: 'overview',
+    posterPath: 'posterPath',
+    voteAverage: 1,
+    name: 'name',
+    originalLanguage: 'originalLanguage',
+    originalName: 'originalName',
+    episodeRunTime: [60],
+    homepage: 'homePage',
+    popularity: 1.0,
+    type: "type",
+    seasons: [
+      Season(
+        episodeCount: 0,
+        id: 1,
+        name: 'name',
+        overview: 'overview',
+        posterPath: 'posterPath',
+        seasonNumber: 1,
+      ),
+    ]);
 
 final testWatchlistMovie = Movie.watchlist(
   id: 1,

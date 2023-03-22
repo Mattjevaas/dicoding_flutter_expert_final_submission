@@ -3,9 +3,6 @@ import 'package:equatable/equatable.dart';
 
 abstract class MovieDetailWatchlistEvent extends Equatable {
   const MovieDetailWatchlistEvent();
-
-  @override
-  List<Object?> get props => [];
 }
 
 class MovieAddWatchList extends MovieDetailWatchlistEvent {

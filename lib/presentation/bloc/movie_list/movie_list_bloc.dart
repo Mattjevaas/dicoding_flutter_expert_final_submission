@@ -38,7 +38,7 @@ class MovieListBloc extends Bloc<MovieListEvent, MovieListState> {
                   MovieListError(failureTopRated.message),
                 ),
                 (dataTopRated) => emit(
-                  MovieListlHasData(
+                  MovieListHasData(
                     nowPlaying: data,
                     popular: dataPopular,
                     topRated: dataTopRated,

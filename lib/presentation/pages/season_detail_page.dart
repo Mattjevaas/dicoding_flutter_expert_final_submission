@@ -1,9 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ditonton/common/constants.dart';
-import 'package:ditonton/common/state_enum.dart';
-import 'package:ditonton/presentation/provider/season_detail_notifier.dart';
+import 'package:ditonton/presentation/bloc/tv_season_detail/tv_season_detail_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../domain/entities/season_detail.dart';
 
@@ -24,32 +23,35 @@ class _SeasonDetailPageState extends State<SeasonDetailPage> {
   void initState() {
     super.initState();
     Future.microtask(() {
-      Provider.of<SeasonDetailNotifier>(context, listen: false)
-          .fetchSeasonDetail(
-        tvId: widget.tvId,
+      BlocProvider.of<TvSeasonDetailBloc>(context).add(FetchTvSeasonDetail(
+        id: widget.tvId,
         seasonNum: widget.seasonNum,
-      );
+      ));
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Consumer<SeasonDetailNotifier>(
-        builder: (context, provider, child) {
-          if (provider.seasonState == RequestState.Loading) {
+      body: BlocBuilder<TvSeasonDetailBloc, TvSeasonDetailState>(
+        builder: (context, state) {
+          if (state is TvSeasonDetailLoading) {
             return Center(
               child: CircularProgressIndicator(),
             );
-          } else if (provider.seasonState == RequestState.Loaded) {
-            final season = provider.season;
+          } else if (state is TvSeasonDetailHasData) {
+            final season = state.seasonDetail;
+
             return SafeArea(
               child: SeasonDetailContent(
                 season,
               ),
             );
+          } else if (state is TvSeasonDetailEmpty) {
+            return Text("Data Kosong");
           } else {
-            return Text(provider.message);
+            final newState = state as TvSeasonDetailError;
+            return Text(newState.message);
           }
         },
       ),

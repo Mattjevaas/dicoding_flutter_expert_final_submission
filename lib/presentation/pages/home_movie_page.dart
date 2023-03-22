@@ -56,7 +56,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
                     return Center(
                       child: CircularProgressIndicator(),
                     );
-                  } else if (state is MovieListlHasData) {
+                  } else if (state is MovieListHasData) {
                     return MovieList(state.nowPlaying);
                   } else if (state is MovieListEmpty) {
                     return Text('Empty');
@@ -76,7 +76,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
                     return Center(
                       child: CircularProgressIndicator(),
                     );
-                  } else if (state is MovieListlHasData) {
+                  } else if (state is MovieListHasData) {
                     return MovieList(state.popular);
                   } else if (state is MovieListEmpty) {
                     return Text('Empty');
@@ -96,7 +96,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
                     return Center(
                       child: CircularProgressIndicator(),
                     );
-                  } else if (state is MovieListlHasData) {
+                  } else if (state is MovieListHasData) {
                     return MovieList(state.topRated);
                   } else if (state is MovieListEmpty) {
                     return Text('Empty');

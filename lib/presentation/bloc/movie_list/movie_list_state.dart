@@ -22,12 +22,12 @@ class MovieListError extends MovieListState {
   List<Object?> get props => [message];
 }
 
-class MovieListlHasData extends MovieListState {
+class MovieListHasData extends MovieListState {
   final List<Movie> nowPlaying;
   final List<Movie> popular;
   final List<Movie> topRated;
 
-  MovieListlHasData({
+  MovieListHasData({
     required this.nowPlaying,
     required this.popular,
     required this.topRated,
