@@ -43,11 +43,10 @@ dependencies:
   firebase_core: ^2.8.0
   firebase_crashlytics: ^3.0.17
 
-# UNCOMMENT THIS TO ADD MOVIE AND TV PACKAGE
-#  movie:
-#    path: movie
-#  tv:
-#    path: tv
+  movie:
+    path: movie
+  tv:
+    path: tv
   firebase_analytics: ^10.1.6
 
 dev_dependencies:
