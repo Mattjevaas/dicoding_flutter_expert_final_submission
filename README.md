@@ -4,6 +4,18 @@
 
 Repository ini merupakan starter project submission kelas Flutter Expert Dicoding Indonesia.
 
+## Uncomment Pubspec.yaml
+
+Jangan lupa uncomment pubspec yaml bagian dibawah ini untuk dapat menggunakan package movie dan tv
+
+```yaml
+# UNCOMMENT THIS TO ADD MOVIE AND TV PACKAGE
+#  movie:
+#    path: movie
+#  tv:
+#    path: tv
+```
+
 ---
 
 ## Tips Submission Awal
