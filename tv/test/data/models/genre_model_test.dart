@@ -3,9 +3,9 @@ import 'package:tv/data/models/genre_model.dart';
 import 'package:tv/domain/entities/genre.dart';
 
 void main() {
-  final tGenreModel = GenreModel(id: 1, name: "name");
+  const tGenreModel = GenreModel(id: 1, name: "name");
 
-  final tGenre = Genre(id: 1, name: "name");
+  const tGenre = Genre(id: 1, name: "name");
 
   group('toJson', () {
     test('should return a JSON map containing proper data', () async {

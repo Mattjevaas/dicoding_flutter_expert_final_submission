@@ -7,7 +7,7 @@ import 'package:tv/data/models/season_detail_model.dart';
 import '../../json_reader.dart';
 
 void main() {
-  final tSeasonDetailModel = SeasonDetailModel(
+  const tSeasonDetailModel = SeasonDetailModel(
     seasonNumber: 1,
     posterPath: "/zwaj4egrhnXOBIit1tyb4Sbt3KP.jpg",
     overview:

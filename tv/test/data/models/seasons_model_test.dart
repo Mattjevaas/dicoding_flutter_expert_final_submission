@@ -3,7 +3,7 @@ import 'package:tv/data/models/season_model.dart';
 import 'package:tv/domain/entities/season.dart';
 
 void main() {
-  final tSeasonsModel = SeasonModel(
+  const tSeasonsModel = SeasonModel(
     name: "name",
     overview: "overview",
     posterPath: "posterPath",
@@ -12,7 +12,7 @@ void main() {
     episodeCount: 1,
   );
 
-  final tSeasons = Season(
+  const tSeasons = Season(
     name: "name",
     overview: "overview",
     posterPath: "posterPath",

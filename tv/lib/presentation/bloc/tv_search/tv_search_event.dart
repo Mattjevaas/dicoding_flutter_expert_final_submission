@@ -10,7 +10,7 @@ abstract class TvSearchEvent extends Equatable {
 class SearchTvProgram extends TvSearchEvent {
   final String query;
 
-  SearchTvProgram(this.query);
+  const SearchTvProgram(this.query);
 
   @override
   List<Object> get props => [];

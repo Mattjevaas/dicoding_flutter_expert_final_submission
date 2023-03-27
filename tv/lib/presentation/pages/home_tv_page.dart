@@ -13,6 +13,8 @@ import '../widgets/custom_drawer.dart';
 import 'now_playing_page.dart';
 
 class HomeTvPage extends StatefulWidget {
+  const HomeTvPage({super.key});
+
   @override
   _HomeTvPageState createState() => _HomeTvPageState();
 }
@@ -27,15 +29,15 @@ class _HomeTvPageState extends State<HomeTvPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: CustomDrawer(),
+      drawer: const CustomDrawer(),
       appBar: AppBar(
-        title: Text('Ditonton Tv Series'),
+        title: const Text('Ditonton Tv Series'),
         actions: [
           IconButton(
             onPressed: () {
               Navigator.pushNamed(context, SearchTvPage.ROUTE_NAME);
             },
-            icon: Icon(Icons.search),
+            icon: const Icon(Icons.search),
           )
         ],
       ),
@@ -53,15 +55,15 @@ class _HomeTvPageState extends State<HomeTvPage> {
               BlocBuilder<TvListBloc, TvListState>(
                 builder: (context, state) {
                   if (state is TvListLoading) {
-                    return Center(
+                    return const Center(
                       child: CircularProgressIndicator(),
                     );
                   } else if (state is TvListHasData) {
                     return TvList(state.nowPlaying);
                   } else if (state is TvListEmpty) {
-                    return Text('Empty');
+                    return const Text('Empty');
                   } else {
-                    return Text('Error');
+                    return const Text('Error');
                   }
                 },
               ),
@@ -73,15 +75,15 @@ class _HomeTvPageState extends State<HomeTvPage> {
               BlocBuilder<TvListBloc, TvListState>(
                 builder: (context, state) {
                   if (state is TvListLoading) {
-                    return Center(
+                    return const Center(
                       child: CircularProgressIndicator(),
                     );
                   } else if (state is TvListHasData) {
                     return TvList(state.popular);
                   } else if (state is TvListEmpty) {
-                    return Text('Empty');
+                    return const Text('Empty');
                   } else {
-                    return Text('Error');
+                    return const Text('Error');
                   }
                 },
               ),
@@ -93,15 +95,15 @@ class _HomeTvPageState extends State<HomeTvPage> {
               BlocBuilder<TvListBloc, TvListState>(
                 builder: (context, state) {
                   if (state is TvListLoading) {
-                    return Center(
+                    return const Center(
                       child: CircularProgressIndicator(),
                     );
                   } else if (state is TvListHasData) {
                     return TvList(state.topRated);
                   } else if (state is TvListEmpty) {
-                    return Text('Empty');
+                    return const Text('Empty');
                   } else {
-                    return Text('Error');
+                    return const Text('Error');
                   }
                 },
               ),
@@ -125,7 +127,7 @@ class _HomeTvPageState extends State<HomeTvPage> {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
-              children: [Text('See More'), Icon(Icons.arrow_forward_ios)],
+              children: const [Text('See More'), Icon(Icons.arrow_forward_ios)],
             ),
           ),
         ),
@@ -137,11 +139,11 @@ class _HomeTvPageState extends State<HomeTvPage> {
 class TvList extends StatelessWidget {
   final List<Tv> movies;
 
-  TvList(this.movies);
+  const TvList(this.movies, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 200,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
@@ -158,13 +160,13 @@ class TvList extends StatelessWidget {
                 );
               },
               child: ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(16)),
+                borderRadius: const BorderRadius.all(Radius.circular(16)),
                 child: CachedNetworkImage(
                   imageUrl: '$BASE_IMAGE_URL${movie.posterPath}',
-                  placeholder: (context, url) => Center(
+                  placeholder: (context, url) => const Center(
                     child: CircularProgressIndicator(),
                   ),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
               ),
             ),

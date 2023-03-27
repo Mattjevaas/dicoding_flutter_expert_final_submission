@@ -7,6 +7,8 @@ import '../widgets/tv_card_list.dart';
 class PopularTvsPage extends StatefulWidget {
   static const ROUTE_NAME = '/popular-tv';
 
+  const PopularTvsPage({super.key});
+
   @override
   _PopularTvsPageState createState() => _PopularTvsPageState();
 }
@@ -26,31 +28,36 @@ class _PopularTvsPageState extends State<PopularTvsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Popular Tvs'),
+        title: const Text('Popular Tvs'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: BlocBuilder<TvPopularBloc, TvPopularState>(
           builder: (context, state) {
             if (state is TvPopularLoading) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             } else if (state is TvPopularHasData) {
               return ListView.builder(
                 itemBuilder: (context, index) {
                   final movie = state.popular[index];
-                  return TvCard(movie);
+                  return TvCard(
+                    key: ValueKey(
+                      movie.id,
+                    ),
+                    movie,
+                  );
                 },
                 itemCount: state.popular.length,
               );
             } else if (state is TvPopularError) {
               return Center(
-                key: Key('error_message'),
+                key: const Key('error_message'),
                 child: Text(state.message),
               );
             } else {
-              return Center(
+              return const Center(
                 child: Text("Nothing Found"),
               );
             }

@@ -8,6 +8,8 @@ import '../widgets/tv_card_list.dart';
 class SearchTvPage extends StatelessWidget {
   static const ROUTE_NAME = '/search-tv';
 
+  const SearchTvPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -17,7 +19,7 @@ class SearchTvPage extends StatelessWidget {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Search'),
+          title: const Text('Search'),
         ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -29,14 +31,14 @@ class SearchTvPage extends StatelessWidget {
                   BlocProvider.of<TvSearchBloc>(context)
                       .add(SearchTvProgram(query));
                 },
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Search title',
                   prefixIcon: Icon(Icons.search),
                   border: OutlineInputBorder(),
                 ),
                 textInputAction: TextInputAction.search,
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               Text(
                 'Search Result',
                 style: kHeading6,
@@ -44,7 +46,7 @@ class SearchTvPage extends StatelessWidget {
               BlocBuilder<TvSearchBloc, TvSearchState>(
                 builder: (context, state) {
                   if (state is TvSearchLoading) {
-                    return Center(
+                    return const Center(
                       child: CircularProgressIndicator(),
                     );
                   } else if (state is TvSearchHasData) {
@@ -55,7 +57,12 @@ class SearchTvPage extends StatelessWidget {
                         padding: const EdgeInsets.all(8),
                         itemBuilder: (context, index) {
                           final movie = result[index];
-                          return TvCard(movie);
+                          return TvCard(
+                            key: ValueKey(
+                              movie.id,
+                            ),
+                            movie,
+                          );
                         },
                         itemCount: result.length,
                       ),

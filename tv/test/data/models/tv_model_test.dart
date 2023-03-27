@@ -3,7 +3,7 @@ import 'package:tv/data/models/tv_model.dart';
 import 'package:tv/domain/entities/tv.dart';
 
 void main() {
-  final tTvModel = TvModel(
+  const tTvModel = TvModel(
     backdropPath: 'backdropPath',
     genreIds: [1, 2, 3],
     id: 1,
@@ -20,7 +20,7 @@ void main() {
 
   final tTv = Tv(
     backdropPath: 'backdropPath',
-    genreIds: [1, 2, 3],
+    genreIds: const [1, 2, 3],
     id: 1,
     overview: 'overview',
     popularity: 1,
@@ -30,7 +30,7 @@ void main() {
     originalName: 'originalName',
     originalLanguage: 'originalLanguage',
     name: 'name',
-    originCountry: ['originCountry'],
+    originCountry: const ['originCountry'],
   );
 
   test('should be a subclass of Tv entity', () async {

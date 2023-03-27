@@ -1,5 +1,5 @@
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../domain/entities/tv_detail.dart';
 import '../../../../domain/usecases/get_watchlist_status_tv.dart';
@@ -29,6 +29,7 @@ class TvDetailWatchlistBloc
         super(NotOnWatchlist()) {
     on<TvAddWatchList>(
       (event, emit) async {
+        emit(UpdatingWatchlist());
         final result = await _saveWatchlist.execute(event.tvDetail);
         result.fold(
           (failure) => emit(WatchlistError(failure.message)),
@@ -38,6 +39,7 @@ class TvDetailWatchlistBloc
     );
     on<TvRemoveWatchList>(
       (event, emit) async {
+        emit(UpdatingWatchlist());
         final result = await _removeWatchlist.execute(event.tvDetail);
         result.fold(
           (failure) => emit(WatchlistError(failure.message)),

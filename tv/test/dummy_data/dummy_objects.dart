@@ -4,7 +4,7 @@ import 'package:tv/domain/entities/season.dart';
 import 'package:tv/domain/entities/tv.dart';
 import 'package:tv/domain/entities/tv_detail.dart';
 
-final testTvDetail = TvDetail(
+const testTvDetail = TvDetail(
   backdropPath: 'backdropPath',
   genres: [Genre(id: 1, name: 'Action')],
   id: 1,
@@ -32,7 +32,7 @@ final testTvDetail = TvDetail(
 
 final testTv = Tv(
   backdropPath: 'backdropPath',
-  genreIds: [1, 2, 3],
+  genreIds: const [1, 2, 3],
   id: 1,
   overview: 'overview',
   popularity: 1,
@@ -42,7 +42,7 @@ final testTv = Tv(
   originalName: 'originalName',
   originalLanguage: 'originalLanguage',
   name: 'name',
-  originCountry: ['originCountry'],
+  originCountry: const ['originCountry'],
 );
 
 final testWatchlistTv = Tv.watchlist(
@@ -54,7 +54,7 @@ final testWatchlistTv = Tv.watchlist(
 
 final testTvList = [testTv];
 
-final testTvtable = TvTable(
+const testTvtable = TvTable(
   id: 1,
   title: 'title',
   posterPath: 'posterPath',

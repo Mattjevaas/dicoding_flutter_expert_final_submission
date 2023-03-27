@@ -14,7 +14,7 @@ class TvSeasonDetailLoading extends TvSeasonDetailState {}
 class TvSeasonDetailError extends TvSeasonDetailState {
   final String message;
 
-  TvSeasonDetailError(this.message);
+  const TvSeasonDetailError(this.message);
 
   @override
   List<Object> get props => [message];
@@ -23,7 +23,7 @@ class TvSeasonDetailError extends TvSeasonDetailState {
 class TvSeasonDetailHasData extends TvSeasonDetailState {
   final SeasonDetail seasonDetail;
 
-  TvSeasonDetailHasData(this.seasonDetail);
+  const TvSeasonDetailHasData(this.seasonDetail);
 
   @override
   List<Object> get props => [seasonDetail];

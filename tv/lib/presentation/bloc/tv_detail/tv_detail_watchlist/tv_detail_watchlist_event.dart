@@ -7,7 +7,7 @@ abstract class TvDetailWatchlistEvent extends Equatable {
 class TvAddWatchList extends TvDetailWatchlistEvent {
   final TvDetail tvDetail;
 
-  TvAddWatchList(this.tvDetail);
+  const TvAddWatchList(this.tvDetail);
 
   @override
   List<Object?> get props => [tvDetail];
@@ -16,7 +16,7 @@ class TvAddWatchList extends TvDetailWatchlistEvent {
 class TvRemoveWatchList extends TvDetailWatchlistEvent {
   final TvDetail tvDetail;
 
-  TvRemoveWatchList(this.tvDetail);
+  const TvRemoveWatchList(this.tvDetail);
 
   @override
   List<Object?> get props => [tvDetail];
@@ -25,7 +25,7 @@ class TvRemoveWatchList extends TvDetailWatchlistEvent {
 class TvLoadWatchlistStatus extends TvDetailWatchlistEvent {
   final int id;
 
-  TvLoadWatchlistStatus(this.id);
+  const TvLoadWatchlistStatus(this.id);
 
   @override
   List<Object?> get props => [id];

@@ -45,6 +45,7 @@ void main() {
     },
     act: (bloc) => bloc.add(MovieAddWatchList(testMovieDetail)),
     expect: () => [
+      UpdatingWatchlist(),
       AlreadyOnWatchlist(),
     ],
     verify: (bloc) {
@@ -61,6 +62,7 @@ void main() {
     },
     act: (bloc) => bloc.add(MovieAddWatchList(testMovieDetail)),
     expect: () => [
+      UpdatingWatchlist(),
       WatchlistError('fail'),
     ],
     verify: (bloc) {
@@ -77,6 +79,7 @@ void main() {
     },
     act: (bloc) => bloc.add(MovieRemoveWatchList(testMovieDetail)),
     expect: () => [
+      UpdatingWatchlist(),
       NotOnWatchlist(),
     ],
     verify: (bloc) {
@@ -92,7 +95,10 @@ void main() {
       return movieDetailWatchlistBloc;
     },
     act: (bloc) => bloc.add(MovieRemoveWatchList(testMovieDetail)),
-    expect: () => [WatchlistError('fail')],
+    expect: () => [
+      UpdatingWatchlist(),
+      WatchlistError('fail'),
+    ],
     verify: (bloc) {
       verify(mockRemoveWatchlist.execute(testMovieDetail));
     },

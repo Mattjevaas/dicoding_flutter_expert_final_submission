@@ -7,7 +7,7 @@ import '../../domain/entities/tv_detail.dart';
 import 'genre_model.dart';
 
 class TvDetailResponse extends Equatable {
-  TvDetailResponse({
+  const TvDetailResponse({
     required this.backdropPath,
     required this.episodeRunTime,
     required this.genres,

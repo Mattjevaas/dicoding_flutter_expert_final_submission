@@ -5,7 +5,7 @@ import '../../domain/entities/season_detail.dart';
 import 'episode_model.dart';
 
 class SeasonDetailModel extends Equatable {
-  SeasonDetailModel({
+  const SeasonDetailModel({
     required this.id,
     required this.episodes,
     required this.name,

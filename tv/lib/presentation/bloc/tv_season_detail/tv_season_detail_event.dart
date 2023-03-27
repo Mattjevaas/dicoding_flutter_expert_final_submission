@@ -8,7 +8,7 @@ class FetchTvSeasonDetail extends TvSeasonDetailEvent {
   final int id;
   final int seasonNum;
 
-  FetchTvSeasonDetail({
+  const FetchTvSeasonDetail({
     required this.id,
     required this.seasonNum,
   });

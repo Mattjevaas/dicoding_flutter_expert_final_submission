@@ -43,6 +43,7 @@ void main() {
     },
     act: (bloc) => bloc.add(TvAddWatchList(testTvDetail)),
     expect: () => [
+      UpdatingWatchlist(),
       AlreadyOnWatchlist(),
     ],
     verify: (bloc) {
@@ -59,6 +60,7 @@ void main() {
     },
     act: (bloc) => bloc.add(TvAddWatchList(testTvDetail)),
     expect: () => [
+      UpdatingWatchlist(),
       WatchlistError('fail'),
     ],
     verify: (bloc) {
@@ -75,6 +77,7 @@ void main() {
     },
     act: (bloc) => bloc.add(TvRemoveWatchList(testTvDetail)),
     expect: () => [
+      UpdatingWatchlist(),
       NotOnWatchlist(),
     ],
     verify: (bloc) {
@@ -90,7 +93,10 @@ void main() {
       return tvDetailWatchlistBloc;
     },
     act: (bloc) => bloc.add(TvRemoveWatchList(testTvDetail)),
-    expect: () => [WatchlistError('fail')],
+    expect: () => [
+      UpdatingWatchlist(),
+      WatchlistError('fail'),
+    ],
     verify: (bloc) {
       verify(mockRemoveWatchlist.execute(testTvDetail));
     },

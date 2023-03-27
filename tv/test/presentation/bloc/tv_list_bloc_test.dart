@@ -33,7 +33,7 @@ void main() {
 
   final tTv = Tv(
     backdropPath: 'backdropPath',
-    genreIds: [1, 2, 3],
+    genreIds: const [1, 2, 3],
     id: 1,
     overview: 'overview',
     popularity: 1,
@@ -43,7 +43,7 @@ void main() {
     originalName: 'originalName',
     originalLanguage: 'originalLanguage',
     name: 'name',
-    originCountry: ['originCountry'],
+    originCountry: const ['originCountry'],
   );
   final tTvList = <Tv>[tTv];
 
@@ -78,16 +78,16 @@ void main() {
     'Should emit [Loading,Error] when get fetch is failed',
     build: () {
       when(mockGetNowPlayingTvs.execute())
-          .thenAnswer((_) async => Left(ServerFailure('fail')));
+          .thenAnswer((_) async => const Left(ServerFailure('fail')));
       when(mockGetTopRatedTvs.execute())
-          .thenAnswer((_) async => Left(ServerFailure('fail')));
+          .thenAnswer((_) async => const Left(ServerFailure('fail')));
       when(mockGetPopularTvs.execute())
-          .thenAnswer((_) async => Left(ServerFailure('fail')));
+          .thenAnswer((_) async => const Left(ServerFailure('fail')));
 
       return tvListBloc;
     },
     act: (bloc) => bloc.add(FetchTvList()),
-    expect: () => [TvListLoading(), TvListError('fail')],
+    expect: () => [TvListLoading(), const TvListError('fail')],
     verify: (bloc) {
       verify(mockGetNowPlayingTvs.execute());
       verify(mockGetTopRatedTvs.execute());

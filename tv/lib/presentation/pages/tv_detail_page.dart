@@ -15,7 +15,7 @@ class TvDetailPage extends StatefulWidget {
   static const ROUTE_NAME = '/detail-tv';
 
   final int id;
-  TvDetailPage({required this.id});
+  const TvDetailPage({super.key, required this.id});
 
   @override
   _TvDetailPageState createState() => _TvDetailPageState();
@@ -38,7 +38,7 @@ class _TvDetailPageState extends State<TvDetailPage> {
       body: BlocBuilder<TvDetailBloc, TvDetailState>(
         builder: (context, state) {
           if (state is TvDetailLoading) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           } else if (state is TvDetailHasData) {
@@ -58,7 +58,7 @@ class _TvDetailPageState extends State<TvDetailPage> {
               ),
             );
           } else if (state is TvDetailEmpty) {
-            return Text("Data Kosong");
+            return const Text("Data Kosong");
           } else {
             final newState = state as TvDetailError;
             return Text(newState.message);
@@ -75,12 +75,9 @@ class DetailContent extends StatelessWidget {
   final List<Tv> recommendations;
   final bool isAddedWatchlist;
 
-  DetailContent(
-    this.tvId,
-    this.tv,
-    this.recommendations,
-    this.isAddedWatchlist,
-  );
+  const DetailContent(
+      this.tvId, this.tv, this.recommendations, this.isAddedWatchlist,
+      {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -90,17 +87,17 @@ class DetailContent extends StatelessWidget {
         CachedNetworkImage(
           imageUrl: 'https://image.tmdb.org/t/p/w500${tv.posterPath}',
           width: screenWidth,
-          placeholder: (context, url) => Center(
+          placeholder: (context, url) => const Center(
             child: CircularProgressIndicator(),
           ),
-          errorWidget: (context, url, error) => Icon(Icons.error),
+          errorWidget: (context, url, error) => const Icon(Icons.error),
         ),
         Container(
           margin: const EdgeInsets.only(top: 48 + 8),
           child: DraggableScrollableSheet(
             builder: (context, scrollController) {
               return Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: kRichBlack,
                   borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
                 ),
@@ -124,6 +121,8 @@ class DetailContent extends StatelessWidget {
                             ),
                             BlocListener<TvDetailWatchlistBloc,
                                 TvDetailWatchlistState>(
+                              listenWhen: (previous, current) =>
+                                  (previous is UpdatingWatchlist),
                               listener: (context, state) {
                                 String message = "";
 
@@ -144,6 +143,8 @@ class DetailContent extends StatelessWidget {
                                     message ==
                                         TvDetailWatchlistBloc
                                             .watchlistRemoveSuccessMessage) {
+                                  ScaffoldMessenger.of(context)
+                                      .clearSnackBars();
                                   ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(content: Text(message)));
                                 } else {
@@ -176,9 +177,9 @@ class DetailContent extends StatelessWidget {
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
                                         state is AlreadyOnWatchlist
-                                            ? Icon(Icons.check)
-                                            : Icon(Icons.add),
-                                        Text('Watchlist'),
+                                            ? const Icon(Icons.check)
+                                            : const Icon(Icons.add),
+                                        const Text('Watchlist'),
                                       ],
                                     ),
                                   );
@@ -201,7 +202,7 @@ class DetailContent extends StatelessWidget {
                                 RatingBarIndicator(
                                   rating: tv.voteAverage / 2,
                                   itemCount: 5,
-                                  itemBuilder: (context, index) => Icon(
+                                  itemBuilder: (context, index) => const Icon(
                                     Icons.star,
                                     color: kMikadoYellow,
                                   ),
@@ -210,7 +211,7 @@ class DetailContent extends StatelessWidget {
                                 Text('${tv.voteAverage}')
                               ],
                             ),
-                            SizedBox(height: 16),
+                            const SizedBox(height: 16),
                             Text(
                               'Overview',
                               style: kHeading6,
@@ -218,14 +219,15 @@ class DetailContent extends StatelessWidget {
                             Text(
                               tv.overview,
                             ),
-                            if (tv.seasons.isNotEmpty) SizedBox(height: 16),
+                            if (tv.seasons.isNotEmpty)
+                              const SizedBox(height: 16),
                             if (tv.seasons.isNotEmpty)
                               Text(
                                 'Seasons',
                                 style: kHeading6,
                               ),
                             if (tv.seasons.isNotEmpty)
-                              Container(
+                              SizedBox(
                                 height: 150,
                                 child: ListView.builder(
                                   scrollDirection: Axis.horizontal,
@@ -245,20 +247,20 @@ class DetailContent extends StatelessWidget {
                                           );
                                         },
                                         child: ClipRRect(
-                                          borderRadius: BorderRadius.all(
+                                          borderRadius: const BorderRadius.all(
                                             Radius.circular(8),
                                           ),
                                           child: CachedNetworkImage(
                                             imageUrl:
                                                 'https://image.tmdb.org/t/p/w500${data.posterPath}',
                                             placeholder: (context, url) =>
-                                                Center(
+                                                const Center(
                                               child:
                                                   CircularProgressIndicator(),
                                             ),
                                             errorWidget:
                                                 (context, url, error) =>
-                                                    Icon(Icons.error),
+                                                    const Icon(Icons.error),
                                           ),
                                         ),
                                       ),
@@ -267,12 +269,12 @@ class DetailContent extends StatelessWidget {
                                   itemCount: tv.seasons.length,
                                 ),
                               ),
-                            SizedBox(height: 16),
+                            const SizedBox(height: 16),
                             Text(
                               'Recommendations',
                               style: kHeading6,
                             ),
-                            Container(
+                            SizedBox(
                               height: 150,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
@@ -289,17 +291,18 @@ class DetailContent extends StatelessWidget {
                                         );
                                       },
                                       child: ClipRRect(
-                                        borderRadius: BorderRadius.all(
+                                        borderRadius: const BorderRadius.all(
                                           Radius.circular(8),
                                         ),
                                         child: CachedNetworkImage(
                                           imageUrl:
                                               'https://image.tmdb.org/t/p/w500${movie.posterPath}',
-                                          placeholder: (context, url) => Center(
+                                          placeholder: (context, url) =>
+                                              const Center(
                                             child: CircularProgressIndicator(),
                                           ),
                                           errorWidget: (context, url, error) =>
-                                              Icon(Icons.error),
+                                              const Icon(Icons.error),
                                         ),
                                       ),
                                     ),
@@ -335,7 +338,7 @@ class DetailContent extends StatelessWidget {
             backgroundColor: kRichBlack,
             foregroundColor: Colors.white,
             child: IconButton(
-              icon: Icon(Icons.arrow_back),
+              icon: const Icon(Icons.arrow_back),
               onPressed: () {
                 Navigator.pop(context);
               },
@@ -349,7 +352,7 @@ class DetailContent extends StatelessWidget {
   String _showGenres(List<Genre> genres) {
     String result = '';
     for (var genre in genres) {
-      result += genre.name + ', ';
+      result += '${genre.name}, ';
     }
 
     if (result.isEmpty) {

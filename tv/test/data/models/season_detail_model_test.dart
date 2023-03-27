@@ -5,7 +5,7 @@ import 'package:tv/domain/entities/episode.dart';
 import 'package:tv/domain/entities/season_detail.dart';
 
 void main() {
-  final tSeasonDetailModel = SeasonDetailModel(
+  const tSeasonDetailModel = SeasonDetailModel(
     id: "1234",
     episodes: [
       EpisodeModel(episodeNumber: 1, id: 1, name: "name", stillPath: "path")
@@ -16,7 +16,7 @@ void main() {
     seasonNumber: 1,
   );
 
-  final tSeasonDetail = SeasonDetail(
+  const tSeasonDetail = SeasonDetail(
     id: "1234",
     episodes: [
       Episode(episodeNumber: 1, id: 1, name: "name", stillPath: "path")

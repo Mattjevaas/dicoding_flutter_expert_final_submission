@@ -55,7 +55,11 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
                   final movie = state.watchlist[index];
 
                   if (movie.redirect != null) {
-                    if (movie.redirect == "movie") return MovieCard(movie);
+                    if (movie.redirect == "movie")
+                      return MovieCard(
+                        key: ValueKey(movie.id),
+                        movie,
+                      );
                     if (movie.redirect == "tv")
                       return TvCard(
                         Tv.watchlist(
@@ -63,9 +67,15 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
                             overview: movie.overview!,
                             posterPath: movie.posterPath,
                             name: movie.title!),
+                        key: ValueKey(
+                          movie.id,
+                        ),
                       );
                   }
-                  return MovieCard(movie);
+                  return MovieCard(
+                    key: ValueKey(movie.id),
+                    movie,
+                  );
                 },
                 itemCount: state.watchlist.length,
               );

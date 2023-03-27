@@ -23,7 +23,7 @@ void main() {
 
   final tTv = Tv(
     backdropPath: 'backdropPath',
-    genreIds: [1, 2, 3],
+    genreIds: const [1, 2, 3],
     id: 1,
     overview: 'overview',
     popularity: 1,
@@ -33,11 +33,11 @@ void main() {
     originalName: 'originalName',
     originalLanguage: 'originalLanguage',
     name: 'name',
-    originCountry: ['originCountry'],
+    originCountry: const ['originCountry'],
   );
 
   final tTvList = <Tv>[tTv];
-  final tQuery = 'name';
+  const tQuery = 'name';
 
   blocTest<TvSearchBloc, TvSearchState>(
     'Should emit [Loading,HasData] when get fetch is success',
@@ -46,7 +46,7 @@ void main() {
           .thenAnswer((_) async => Right(tTvList));
       return tvSearchBloc;
     },
-    act: (bloc) => bloc.add(SearchTvProgram(tQuery)),
+    act: (bloc) => bloc.add(const SearchTvProgram(tQuery)),
     expect: () => [
       TvSearchLoading(),
       TvSearchHasData(tTvList),
@@ -60,13 +60,13 @@ void main() {
     'Should emit [Loading, Error] when get fetch is failed',
     build: () {
       when(mockSearchTvs.execute(tQuery))
-          .thenAnswer((_) async => Left(ServerFailure('fail')));
+          .thenAnswer((_) async => const Left(ServerFailure('fail')));
       return tvSearchBloc;
     },
-    act: (bloc) => bloc.add(SearchTvProgram(tQuery)),
+    act: (bloc) => bloc.add(const SearchTvProgram(tQuery)),
     expect: () => [
       TvSearchLoading(),
-      TvSearchError('fail'),
+      const TvSearchError('fail'),
     ],
     verify: (bloc) {
       verify(mockSearchTvs.execute(tQuery));

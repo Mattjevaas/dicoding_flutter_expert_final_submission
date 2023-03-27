@@ -14,7 +14,7 @@ class TvListLoading extends TvListState {}
 class TvListError extends TvListState {
   final String message;
 
-  TvListError(this.message);
+  const TvListError(this.message);
 
   @override
   List<Object?> get props => [message];
@@ -25,7 +25,7 @@ class TvListHasData extends TvListState {
   final List<Tv> popular;
   final List<Tv> topRated;
 
-  TvListHasData({
+  const TvListHasData({
     required this.nowPlaying,
     required this.popular,
     required this.topRated,

@@ -12,7 +12,8 @@ class SeasonDetailPage extends StatefulWidget {
   final int tvId;
   final int seasonNum;
 
-  SeasonDetailPage({required this.tvId, required this.seasonNum});
+  const SeasonDetailPage(
+      {super.key, required this.tvId, required this.seasonNum});
 
   @override
   _SeasonDetailPageState createState() => _SeasonDetailPageState();
@@ -36,7 +37,7 @@ class _SeasonDetailPageState extends State<SeasonDetailPage> {
       body: BlocBuilder<TvSeasonDetailBloc, TvSeasonDetailState>(
         builder: (context, state) {
           if (state is TvSeasonDetailLoading) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           } else if (state is TvSeasonDetailHasData) {
@@ -48,7 +49,7 @@ class _SeasonDetailPageState extends State<SeasonDetailPage> {
               ),
             );
           } else if (state is TvSeasonDetailEmpty) {
-            return Text("Data Kosong");
+            return const Text("Data Kosong");
           } else {
             final newState = state as TvSeasonDetailError;
             return Text(newState.message);
@@ -62,7 +63,7 @@ class _SeasonDetailPageState extends State<SeasonDetailPage> {
 class SeasonDetailContent extends StatelessWidget {
   final SeasonDetail season;
 
-  SeasonDetailContent(this.season);
+  const SeasonDetailContent(this.season, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -72,17 +73,17 @@ class SeasonDetailContent extends StatelessWidget {
         CachedNetworkImage(
           imageUrl: 'https://image.tmdb.org/t/p/w500${season.posterPath}',
           width: screenWidth,
-          placeholder: (context, url) => Center(
+          placeholder: (context, url) => const Center(
             child: CircularProgressIndicator(),
           ),
-          errorWidget: (context, url, error) => Icon(Icons.error),
+          errorWidget: (context, url, error) => const Icon(Icons.error),
         ),
         Container(
           margin: const EdgeInsets.only(top: 48 + 8),
           child: DraggableScrollableSheet(
             builder: (context, scrollController) {
               return Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: kRichBlack,
                   borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
                 ),
@@ -105,7 +106,7 @@ class SeasonDetailContent extends StatelessWidget {
                               style: kHeading5,
                             ),
                             if (season.overview.isNotEmpty)
-                              SizedBox(height: 16),
+                              const SizedBox(height: 16),
                             if (season.overview.isNotEmpty)
                               Text(
                                 'Overview',
@@ -116,16 +117,16 @@ class SeasonDetailContent extends StatelessWidget {
                                 season.overview,
                               ),
                             if (season.episodes.isNotEmpty)
-                              SizedBox(height: 16),
+                              const SizedBox(height: 16),
                             if (season.overview.isNotEmpty)
                               Text(
                                 'Episodes',
                                 style: kHeading6,
                               ),
                             if (season.overview.isNotEmpty)
-                              SizedBox(height: 25),
+                              const SizedBox(height: 25),
                             if (season.overview.isNotEmpty)
-                              Container(
+                              SizedBox(
                                 width: MediaQuery.of(context).size.width,
                                 height: 500,
                                 child: ListView.builder(
@@ -137,24 +138,25 @@ class SeasonDetailContent extends StatelessWidget {
                                         child: Row(
                                           children: [
                                             ClipRRect(
-                                              borderRadius: BorderRadius.all(
+                                              borderRadius:
+                                                  const BorderRadius.all(
                                                 Radius.circular(10),
                                               ),
                                               child: CachedNetworkImage(
                                                 imageUrl:
                                                     'https://image.tmdb.org/t/p/w500${data.stillPath}',
                                                 placeholder: (context, url) =>
-                                                    Center(
+                                                    const Center(
                                                   child:
                                                       CircularProgressIndicator(),
                                                 ),
                                                 errorWidget:
                                                     (context, url, error) =>
-                                                        Icon(Icons.error),
+                                                        const Icon(Icons.error),
                                                 height: 80,
                                               ),
                                             ),
-                                            SizedBox(width: 10),
+                                            const SizedBox(width: 10),
                                             Expanded(
                                               child: Column(
                                                 crossAxisAlignment:
@@ -200,7 +202,7 @@ class SeasonDetailContent extends StatelessWidget {
             backgroundColor: kRichBlack,
             foregroundColor: Colors.white,
             child: IconButton(
-              icon: Icon(Icons.arrow_back),
+              icon: const Icon(Icons.arrow_back),
               onPressed: () {
                 Navigator.pop(context);
               },

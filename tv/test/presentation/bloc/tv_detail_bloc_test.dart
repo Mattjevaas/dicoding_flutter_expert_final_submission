@@ -31,11 +31,11 @@ void main() {
     );
   });
 
-  final tId = 1;
+  const tId = 1;
 
   final tTv = Tv(
     backdropPath: 'backdropPath',
-    genreIds: [1, 2, 3],
+    genreIds: const [1, 2, 3],
     id: 1,
     overview: 'overview',
     popularity: 1,
@@ -45,7 +45,7 @@ void main() {
     name: 'name',
     originalLanguage: 'originalLanguage',
     originalName: 'originalName',
-    originCountry: ['originCountry'],
+    originCountry: const ['originCountry'],
   );
 
   final tTvs = <Tv>[tTv];
@@ -54,12 +54,12 @@ void main() {
     'Should emit [Loading,HasData] when get fetch is success',
     build: () {
       when(mockGetTvDetail.execute(tId))
-          .thenAnswer((_) async => Right(testTvDetail));
+          .thenAnswer((_) async => const Right(testTvDetail));
       when(mockGetTvRecommendations.execute(tId))
           .thenAnswer((_) async => Right(tTvs));
       return movieDetailBloc;
     },
-    act: (bloc) => bloc.add(FetchTvDetail(tId)),
+    act: (bloc) => bloc.add(const FetchTvDetail(tId)),
     expect: () => [
       TvDetailLoading(),
       TvDetailHasData(testTvDetail, tTvs),
@@ -74,15 +74,15 @@ void main() {
     'Should emit [Loading, Error] when get fetch is failed',
     build: () {
       when(mockGetTvDetail.execute(tId))
-          .thenAnswer((_) async => Left(ServerFailure('error')));
+          .thenAnswer((_) async => const Left(ServerFailure('error')));
       when(mockGetTvRecommendations.execute(tId))
-          .thenAnswer((_) async => Left(ServerFailure('error')));
+          .thenAnswer((_) async => const Left(ServerFailure('error')));
       return movieDetailBloc;
     },
-    act: (bloc) => bloc.add(FetchTvDetail(tId)),
+    act: (bloc) => bloc.add(const FetchTvDetail(tId)),
     expect: () => [
       TvDetailLoading(),
-      TvDetailError('error'),
+      const TvDetailError('error'),
     ],
     verify: (bloc) {
       verify(mockGetTvDetail.execute(tId));

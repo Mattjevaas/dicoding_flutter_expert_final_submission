@@ -23,7 +23,7 @@ void main() {
 
   final tTv = Tv(
     backdropPath: 'backdropPath',
-    genreIds: [1, 2, 3],
+    genreIds: const [1, 2, 3],
     id: 1,
     overview: 'overview',
     popularity: 1,
@@ -33,7 +33,7 @@ void main() {
     originalName: 'originalName',
     originalLanguage: 'originalLanguage',
     name: 'name',
-    originCountry: ['originCountry'],
+    originCountry: const ['originCountry'],
   );
 
   final tTvList = <Tv>[tTv];
@@ -59,13 +59,13 @@ void main() {
     'Should emit [Loading, Error] when get fetch is failed',
     build: () {
       when(mockGetNowPlayingTvs.execute())
-          .thenAnswer((_) async => Left(ServerFailure('fail')));
+          .thenAnswer((_) async => const Left(ServerFailure('fail')));
       return tvNowPlayingBloc;
     },
     act: (bloc) => bloc.add(FetchTvNowPlayingMovie()),
     expect: () => [
       TvNowPlayingLoading(),
-      TvNowPlayingError('fail'),
+      const TvNowPlayingError('fail'),
     ],
     verify: (bloc) {
       verify(mockGetNowPlayingTvs.execute());
