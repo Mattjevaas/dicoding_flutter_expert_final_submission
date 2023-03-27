@@ -16,7 +16,7 @@ class MovieListLoading extends MovieListState {}
 class MovieListError extends MovieListState {
   final String message;
 
-  MovieListError(this.message);
+  const MovieListError(this.message);
 
   @override
   List<Object?> get props => [message];
@@ -27,7 +27,7 @@ class MovieListHasData extends MovieListState {
   final List<Movie> popular;
   final List<Movie> topRated;
 
-  MovieListHasData({
+  const MovieListHasData({
     required this.nowPlaying,
     required this.popular,
     required this.topRated,

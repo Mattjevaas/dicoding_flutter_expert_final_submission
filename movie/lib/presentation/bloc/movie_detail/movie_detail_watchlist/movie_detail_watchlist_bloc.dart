@@ -26,6 +26,8 @@ class MovieDetailWatchlistBloc
         super(NotOnWatchlist()) {
     on<MovieAddWatchList>(
       (event, emit) async {
+        emit(UpdatingWatchlist());
+
         final result = await _saveWatchlist.execute(event.movieDetail);
         result.fold(
           (failure) => emit(WatchlistError(failure.message)),
@@ -35,6 +37,8 @@ class MovieDetailWatchlistBloc
     );
     on<MovieRemoveWatchList>(
       (event, emit) async {
+        emit(UpdatingWatchlist());
+
         final result = await _removeWatchlist.execute(event.movieDetail);
         result.fold(
           (failure) => emit(WatchlistError(failure.message)),

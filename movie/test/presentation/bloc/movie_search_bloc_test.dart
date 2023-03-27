@@ -24,7 +24,7 @@ void main() {
   final tMovieModel = Movie(
     adult: false,
     backdropPath: '/muth4OYamXf41G2evdrLEg8d3om.jpg',
-    genreIds: [14, 28],
+    genreIds: const [14, 28],
     id: 557,
     originalTitle: 'Spider-Man',
     overview:
@@ -38,7 +38,7 @@ void main() {
     voteCount: 13507,
   );
   final tMovieList = <Movie>[tMovieModel];
-  final tQuery = 'spiderman';
+  const tQuery = 'spiderman';
 
   blocTest<MovieSearchBloc, MovieSearchState>(
     'Should emit [Loading,HasData] when get fetch is success',
@@ -47,7 +47,7 @@ void main() {
           .thenAnswer((_) async => Right(tMovieList));
       return movieSearchBloc;
     },
-    act: (bloc) => bloc.add(SearchMovie(tQuery)),
+    act: (bloc) => bloc.add(const SearchMovie(tQuery)),
     expect: () => [
       MovieSearchLoading(),
       MovieSearchHasData(tMovieList),
@@ -61,13 +61,13 @@ void main() {
     'Should emit [Loading, Error] when get fetch is failed',
     build: () {
       when(mockSearchMovies.execute(tQuery))
-          .thenAnswer((_) async => Left(ServerFailure('fail')));
+          .thenAnswer((_) async => const Left(ServerFailure('fail')));
       return movieSearchBloc;
     },
-    act: (bloc) => bloc.add(SearchMovie(tQuery)),
+    act: (bloc) => bloc.add(const SearchMovie(tQuery)),
     expect: () => [
       MovieSearchLoading(),
-      MovieSearchError('fail'),
+      const MovieSearchError('fail'),
     ],
     verify: (bloc) {
       verify(mockSearchMovies.execute(tQuery));

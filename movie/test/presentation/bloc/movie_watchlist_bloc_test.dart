@@ -44,13 +44,13 @@ void main() {
     'Should emit [Loading, Error] when get fetch is failed',
     build: () {
       when(mockGetWatchlistMovies.execute())
-          .thenAnswer((_) async => Left(DatabaseFailure('fail')));
+          .thenAnswer((_) async => const Left(DatabaseFailure('fail')));
       return movieWatchlistBloc;
     },
     act: (bloc) => bloc.add(FetchWatchlistMovie()),
     expect: () => [
       MovieWatchlistLoading(),
-      MovieWatchlistError('fail'),
+      const MovieWatchlistError('fail'),
     ],
     verify: (bloc) {
       verify(mockGetWatchlistMovies.execute());

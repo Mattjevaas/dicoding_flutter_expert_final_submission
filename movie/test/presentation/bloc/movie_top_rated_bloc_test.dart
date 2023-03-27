@@ -25,7 +25,7 @@ void main() {
   final tMovie = Movie(
     adult: false,
     backdropPath: 'backdropPath',
-    genreIds: [1, 2, 3],
+    genreIds: const [1, 2, 3],
     id: 1,
     originalTitle: 'originalTitle',
     overview: 'overview',
@@ -61,13 +61,13 @@ void main() {
     'Should emit [Loading, Error] when get fetch is failed',
     build: () {
       when(mockGetTopRatedMovies.execute())
-          .thenAnswer((_) async => Left(ServerFailure('fail')));
+          .thenAnswer((_) async => const Left(ServerFailure('fail')));
       return movieTopRatedBloc;
     },
     act: (bloc) => bloc.add(FetchTopRatedMovie()),
     expect: () => [
       MovieTopRatedLoading(),
-      MovieTopRatedError('fail'),
+      const MovieTopRatedError('fail'),
     ],
     verify: (bloc) {
       verify(mockGetTopRatedMovies.execute());

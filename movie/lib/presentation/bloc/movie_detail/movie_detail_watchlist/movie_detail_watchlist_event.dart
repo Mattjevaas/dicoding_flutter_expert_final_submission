@@ -9,7 +9,7 @@ abstract class MovieDetailWatchlistEvent extends Equatable {
 class MovieAddWatchList extends MovieDetailWatchlistEvent {
   final MovieDetail movieDetail;
 
-  MovieAddWatchList(this.movieDetail);
+  const MovieAddWatchList(this.movieDetail);
 
   @override
   List<Object?> get props => [movieDetail];
@@ -18,7 +18,7 @@ class MovieAddWatchList extends MovieDetailWatchlistEvent {
 class MovieRemoveWatchList extends MovieDetailWatchlistEvent {
   final MovieDetail movieDetail;
 
-  MovieRemoveWatchList(this.movieDetail);
+  const MovieRemoveWatchList(this.movieDetail);
 
   @override
   List<Object?> get props => [movieDetail];
@@ -27,7 +27,7 @@ class MovieRemoveWatchList extends MovieDetailWatchlistEvent {
 class MovieLoadWatchlistStatus extends MovieDetailWatchlistEvent {
   final int id;
 
-  MovieLoadWatchlistStatus(this.id);
+  const MovieLoadWatchlistStatus(this.id);
 
   @override
   List<Object?> get props => [id];

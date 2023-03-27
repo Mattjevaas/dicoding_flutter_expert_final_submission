@@ -11,10 +11,12 @@ class AlreadyOnWatchlist extends MovieDetailWatchlistState {}
 
 class NotOnWatchlist extends MovieDetailWatchlistState {}
 
+class UpdatingWatchlist extends MovieDetailWatchlistState {}
+
 class WatchlistError extends MovieDetailWatchlistState {
   final String message;
 
-  WatchlistError(this.message);
+  const WatchlistError(this.message);
 
   @override
   List<Object?> get props => [message];

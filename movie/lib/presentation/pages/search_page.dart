@@ -8,6 +8,8 @@ import '../widgets/movie_card_list.dart';
 class SearchPage extends StatelessWidget {
   static const ROUTE_NAME = '/search';
 
+  const SearchPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -17,7 +19,7 @@ class SearchPage extends StatelessWidget {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Search'),
+          title: const Text('Search'),
         ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -29,14 +31,14 @@ class SearchPage extends StatelessWidget {
                   BlocProvider.of<MovieSearchBloc>(context)
                       .add(SearchMovie(query));
                 },
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Search title',
                   prefixIcon: Icon(Icons.search),
                   border: OutlineInputBorder(),
                 ),
                 textInputAction: TextInputAction.search,
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               Text(
                 'Search Result',
                 style: kHeading6,
@@ -44,7 +46,7 @@ class SearchPage extends StatelessWidget {
               BlocBuilder<MovieSearchBloc, MovieSearchState>(
                 builder: (context, state) {
                   if (state is MovieSearchLoading) {
-                    return Center(
+                    return const Center(
                       child: CircularProgressIndicator(),
                     );
                   } else if (state is MovieSearchHasData) {
@@ -55,7 +57,10 @@ class SearchPage extends StatelessWidget {
                         padding: const EdgeInsets.all(8),
                         itemBuilder: (context, index) {
                           final movie = result[index];
-                          return MovieCard(movie);
+                          return MovieCard(
+                            key: ValueKey(movie.id),
+                            movie,
+                          );
                         },
                         itemCount: result.length,
                       ),

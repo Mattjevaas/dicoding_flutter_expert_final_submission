@@ -34,17 +34,18 @@ void main() {
     );
   });
 
-  final tId = 1;
+  const tId = 1;
 
   blocTest<MovieDetailWatchlistBloc, MovieDetailWatchlistState>(
     'Should emit [AlreadyOnWatchlist] when get add is success',
     build: () {
       when(mockSaveWatchlist.execute(testMovieDetail))
-          .thenAnswer((_) async => Right('success'));
+          .thenAnswer((_) async => const Right('success'));
       return movieDetailWatchlistBloc;
     },
-    act: (bloc) => bloc.add(MovieAddWatchList(testMovieDetail)),
+    act: (bloc) => bloc.add(const MovieAddWatchList(testMovieDetail)),
     expect: () => [
+      UpdatingWatchlist(),
       AlreadyOnWatchlist(),
     ],
     verify: (bloc) {
@@ -56,12 +57,13 @@ void main() {
     'Should emit [WatchlistError] when get add is failed',
     build: () {
       when(mockSaveWatchlist.execute(testMovieDetail))
-          .thenAnswer((_) async => Left(DatabaseFailure('fail')));
+          .thenAnswer((_) async => const Left(DatabaseFailure('fail')));
       return movieDetailWatchlistBloc;
     },
-    act: (bloc) => bloc.add(MovieAddWatchList(testMovieDetail)),
+    act: (bloc) => bloc.add(const MovieAddWatchList(testMovieDetail)),
     expect: () => [
-      WatchlistError('fail'),
+      UpdatingWatchlist(),
+      const WatchlistError('fail'),
     ],
     verify: (bloc) {
       verify(mockSaveWatchlist.execute(testMovieDetail));
@@ -72,11 +74,12 @@ void main() {
     'Should emit [NotOnWatchlist] when get remove is success',
     build: () {
       when(mockRemoveWatchlist.execute(testMovieDetail))
-          .thenAnswer((_) async => Right('success'));
+          .thenAnswer((_) async => const Right('success'));
       return movieDetailWatchlistBloc;
     },
-    act: (bloc) => bloc.add(MovieRemoveWatchList(testMovieDetail)),
+    act: (bloc) => bloc.add(const MovieRemoveWatchList(testMovieDetail)),
     expect: () => [
+      UpdatingWatchlist(),
       NotOnWatchlist(),
     ],
     verify: (bloc) {
@@ -88,11 +91,14 @@ void main() {
     'Should emit [WatchlistError] when get remove is failed',
     build: () {
       when(mockRemoveWatchlist.execute(testMovieDetail))
-          .thenAnswer((_) async => Left(DatabaseFailure('fail')));
+          .thenAnswer((_) async => const Left(DatabaseFailure('fail')));
       return movieDetailWatchlistBloc;
     },
-    act: (bloc) => bloc.add(MovieRemoveWatchList(testMovieDetail)),
-    expect: () => [WatchlistError('fail')],
+    act: (bloc) => bloc.add(const MovieRemoveWatchList(testMovieDetail)),
+    expect: () => [
+      UpdatingWatchlist(),
+      const WatchlistError('fail'),
+    ],
     verify: (bloc) {
       verify(mockRemoveWatchlist.execute(testMovieDetail));
     },
@@ -104,7 +110,7 @@ void main() {
       when(mockGetWatchListStatus.execute(tId)).thenAnswer((_) async => true);
       return movieDetailWatchlistBloc;
     },
-    act: (bloc) => bloc.add(MovieLoadWatchlistStatus(tId)),
+    act: (bloc) => bloc.add(const MovieLoadWatchlistStatus(tId)),
     expect: () => [
       AlreadyOnWatchlist(),
     ],
@@ -119,7 +125,7 @@ void main() {
       when(mockGetWatchListStatus.execute(tId)).thenAnswer((_) async => false);
       return movieDetailWatchlistBloc;
     },
-    act: (bloc) => bloc.add(MovieLoadWatchlistStatus(tId)),
+    act: (bloc) => bloc.add(const MovieLoadWatchlistStatus(tId)),
     expect: () => [
       NotOnWatchlist(),
     ],

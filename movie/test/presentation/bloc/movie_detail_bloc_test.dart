@@ -33,12 +33,12 @@ void main() {
     );
   });
 
-  final tId = 1;
+  const tId = 1;
 
   final tMovie = Movie(
     adult: false,
     backdropPath: 'backdropPath',
-    genreIds: [1, 2, 3],
+    genreIds: const [1, 2, 3],
     id: 1,
     originalTitle: 'originalTitle',
     overview: 'overview',
@@ -57,12 +57,12 @@ void main() {
     'Should emit [Loading,HasData] when get fetch is success',
     build: () {
       when(mockGetMovieDetail.execute(tId))
-          .thenAnswer((_) async => Right(testMovieDetail));
+          .thenAnswer((_) async => const Right(testMovieDetail));
       when(mockGetMovieRecommendations.execute(tId))
           .thenAnswer((_) async => Right(tMovies));
       return movieDetailBloc;
     },
-    act: (bloc) => bloc.add(FetchMovieDetail(tId)),
+    act: (bloc) => bloc.add(const FetchMovieDetail(tId)),
     expect: () => [
       MovieDetailLoading(),
       MovieDetailHasData(testMovieDetail, tMovies),
@@ -77,15 +77,15 @@ void main() {
     'Should emit [Loading, Error] when get fetch is failed',
     build: () {
       when(mockGetMovieDetail.execute(tId))
-          .thenAnswer((_) async => Left(ServerFailure('error')));
+          .thenAnswer((_) async => const Left(ServerFailure('error')));
       when(mockGetMovieRecommendations.execute(tId))
-          .thenAnswer((_) async => Left(ServerFailure('error')));
+          .thenAnswer((_) async => const Left(ServerFailure('error')));
       return movieDetailBloc;
     },
-    act: (bloc) => bloc.add(FetchMovieDetail(tId)),
+    act: (bloc) => bloc.add(const FetchMovieDetail(tId)),
     expect: () => [
       MovieDetailLoading(),
-      MovieDetailError('error'),
+      const MovieDetailError('error'),
     ],
     verify: (bloc) {
       verify(mockGetMovieDetail.execute(tId));

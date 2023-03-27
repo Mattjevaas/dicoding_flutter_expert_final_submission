@@ -14,6 +14,8 @@ import '../widgets/custom_drawer.dart';
 import 'movie_detail_page.dart';
 
 class HomeMoviePage extends StatefulWidget {
+  const HomeMoviePage({super.key});
+
   @override
   _HomeMoviePageState createState() => _HomeMoviePageState();
 }
@@ -28,15 +30,15 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: CustomDrawer(),
+      drawer: const CustomDrawer(),
       appBar: AppBar(
-        title: Text('Ditonton Movies'),
+        title: const Text('Ditonton Movies'),
         actions: [
           IconButton(
             onPressed: () {
               Navigator.pushNamed(context, SearchPage.ROUTE_NAME);
             },
-            icon: Icon(Icons.search),
+            icon: const Icon(Icons.search),
           )
         ],
       ),
@@ -53,15 +55,15 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
               BlocBuilder<MovieListBloc, MovieListState>(
                 builder: (context, state) {
                   if (state is MovieListLoading) {
-                    return Center(
+                    return const Center(
                       child: CircularProgressIndicator(),
                     );
                   } else if (state is MovieListHasData) {
                     return MovieList(state.nowPlaying);
                   } else if (state is MovieListEmpty) {
-                    return Text('Empty');
+                    return const Text('Empty');
                   } else {
-                    return Text('Error');
+                    return const Text('Error');
                   }
                 },
               ),
@@ -73,15 +75,15 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
               BlocBuilder<MovieListBloc, MovieListState>(
                 builder: (context, state) {
                   if (state is MovieListLoading) {
-                    return Center(
+                    return const Center(
                       child: CircularProgressIndicator(),
                     );
                   } else if (state is MovieListHasData) {
                     return MovieList(state.popular);
                   } else if (state is MovieListEmpty) {
-                    return Text('Empty');
+                    return const Text('Empty');
                   } else {
-                    return Text('Error');
+                    return const Text('Error');
                   }
                 },
               ),
@@ -93,15 +95,15 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
               BlocBuilder<MovieListBloc, MovieListState>(
                 builder: (context, state) {
                   if (state is MovieListLoading) {
-                    return Center(
+                    return const Center(
                       child: CircularProgressIndicator(),
                     );
                   } else if (state is MovieListHasData) {
                     return MovieList(state.topRated);
                   } else if (state is MovieListEmpty) {
-                    return Text('Empty');
+                    return const Text('Empty');
                   } else {
-                    return Text('Error');
+                    return const Text('Error');
                   }
                 },
               ),
@@ -125,7 +127,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
-              children: [Text('See More'), Icon(Icons.arrow_forward_ios)],
+              children: const [Text('See More'), Icon(Icons.arrow_forward_ios)],
             ),
           ),
         ),
@@ -137,11 +139,11 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
 class MovieList extends StatelessWidget {
   final List<Movie> movies;
 
-  MovieList(this.movies);
+  const MovieList(this.movies, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 200,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
@@ -158,13 +160,13 @@ class MovieList extends StatelessWidget {
                 );
               },
               child: ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(16)),
+                borderRadius: const BorderRadius.all(Radius.circular(16)),
                 child: CachedNetworkImage(
                   imageUrl: '$BASE_IMAGE_URL${movie.posterPath}',
-                  placeholder: (context, url) => Center(
+                  placeholder: (context, url) => const Center(
                     child: CircularProgressIndicator(),
                   ),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
               ),
             ),

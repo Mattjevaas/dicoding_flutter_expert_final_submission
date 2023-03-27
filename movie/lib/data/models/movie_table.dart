@@ -10,7 +10,7 @@ class MovieTable extends Equatable {
   final String? overview;
   final String redirect;
 
-  MovieTable(
+  const MovieTable(
       {required this.id,
       required this.title,
       required this.posterPath,

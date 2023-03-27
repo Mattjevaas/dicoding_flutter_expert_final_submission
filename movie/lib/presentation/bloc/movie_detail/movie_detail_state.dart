@@ -17,7 +17,7 @@ class MovieDetailLoading extends MovieDetailState {}
 class MovieDetailError extends MovieDetailState {
   final String message;
 
-  MovieDetailError(this.message);
+  const MovieDetailError(this.message);
 
   @override
   List<Object?> get props => [message];
@@ -27,7 +27,7 @@ class MovieDetailHasData extends MovieDetailState {
   final MovieDetail movie;
   final List<Movie> recommendations;
 
-  MovieDetailHasData(
+  const MovieDetailHasData(
     this.movie,
     this.recommendations,
   );
